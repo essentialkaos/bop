@@ -1,6 +1,6 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/bop.svg"/></a></p>
 
-<p align="center"><a href="#screenshots">Screenshots</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#thanks">Thanks</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#installation">Installation</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
 
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/bop"><img src="https://travis-ci.com/essentialkaos/bop.svg?branch=master" alt="TravisCI" /></a>
@@ -40,6 +40,27 @@ You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](
 bash <(curl -fsSL https://apps.kaos.st/get) bop
 ```
 
+### Command-line completion
+
+You can generate completion for `bash`, `zsh` or `fish` shell.
+
+Bash:
+```
+[sudo] bop --completion=bash 1> /etc/bash_completion.d/bop
+```
+
+
+ZSH:
+```
+[sudo] bop --completion=zsh 1> /usr/share/zsh/site-functions/bop
+```
+
+
+Fish:
+```
+[sudo] bop --completion=fish 1> /usr/share/fish/vendor_completions.d/bop.fish
+```
+
 ### Usage
 
 ```
@@ -47,6 +68,7 @@ Usage: bop {options} name package…
 
 Options
 
+  --output, -o file        Output file
   --service, -s service    List of services for checking (mergable)
   --no-color, -nc          Disable colors in output
   --help, -h               Show this help message
