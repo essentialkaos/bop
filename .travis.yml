@@ -12,6 +12,7 @@ branches:
 
 os:
   - linux
+  - osx
 
 matrix:
   fast_finish: true
@@ -19,8 +20,7 @@ matrix:
     - go: tip
 
 before_install:
-  - make deps-test
   - make deps
 
 script:
-  - make test
+  - make all
