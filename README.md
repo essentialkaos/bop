@@ -43,6 +43,17 @@ You can download prebuilt binaries for Linux from [EK Apps Repository](https://a
 bash <(curl -fsSL https://apps.kaos.st/get) bop
 ```
 
+### Docker support
+
+You can use [Docker containers](https://hub.docker.com/r/essentialkaos/bibop) for testing your packages. Install latest version of Docker, then:
+
+```bash
+curl -o bop-docker https://kaos.sh/bop/bop-docker
+chmod +x bop-docker
+[sudo] mv bop-docker /usr/bin/
+bop-docker test-name package.rpm
+```
+
 ### Command-line completion
 
 You can generate completion for `bash`, `zsh` or `fish` shell.
