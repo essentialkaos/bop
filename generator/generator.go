@@ -495,15 +495,15 @@ func genUserCheck(user *data.User) string {
 	}
 
 	if user.Group != "" {
-		fmt.Sprintf("  user-group %s %s\n", user.Name, user.Group)
+		data += fmt.Sprintf("  user-group %s %s\n", user.Name, user.Group)
 	}
 
 	if user.Home != "" {
-		fmt.Sprintf("  user-home %s %s\n", user.Name, user.Home)
+		data += fmt.Sprintf("  user-home %s %s\n", user.Name, user.Home)
 	}
 
 	if user.Shell != "" {
-		fmt.Sprintf("  user-shell %s %s\n", user.Name, user.Shell)
+		data += fmt.Sprintf("  user-shell %s %s\n", user.Name, user.Shell)
 	}
 
 	return data
