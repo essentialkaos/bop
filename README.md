@@ -1,6 +1,6 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/bop.svg"/></a></p>
 
-<p align="center"><a href="#installation">Installation</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
 
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/bop"><img src="https://travis-ci.com/essentialkaos/bop.svg?branch=master" alt="TravisCI" /></a>
@@ -45,7 +45,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) bop
 
 ### Docker support
 
-You can use [Docker containers](https://hub.docker.com/r/essentialkaos/bibop) for testing your packages. Install latest version of Docker, then:
+You can use [Docker containers](https://hub.docker.com/r/essentialkaos/bop) for testing your packages. Install latest version of Docker, then:
 
 ```bash
 curl -o bop-docker https://kaos.sh/bop/bop-docker

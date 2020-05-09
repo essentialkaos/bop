@@ -27,7 +27,6 @@ LABEL name="Bop Image on CentOS 7" \
       version="2020.05.09"
 
 COPY --from=builder /go/src/github.com/essentialkaos/bop/bop /usr/bin/
-COPY --from=builder /go/src/github.com/essentialkaos/bop/bop-entrypoint /usr/bin/
 
 VOLUME /bop
 WORKDIR /bop
