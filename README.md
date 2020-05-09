@@ -48,7 +48,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) bop
 You can use [Docker containers](https://hub.docker.com/r/essentialkaos/bop) for testing your packages. Install latest version of Docker, then:
 
 ```bash
-curl -o bop-docker https://kaos.sh/bop/bop-docker
+curl -#L -o bop-docker https://kaos.sh/bop/bop-docker
 chmod +x bop-docker
 [sudo] mv bop-docker /usr/bin/
 bop-docker test-name package.rpm

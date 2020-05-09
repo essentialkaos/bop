@@ -36,8 +36,6 @@ func Generate(name string, services []string, info *data.Info) (string, string) 
 	data += genPython3ModuleCheck(info)
 	data += genPythonWheelsCheck(info)
 
-	fmt.Println(data)
-
 	return genOutputName(name, info), data
 }
 
