@@ -9,6 +9,8 @@
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg" alt="License" /></a>
 </p>
 
+</br>
+
 `bop` is a utility for generating [bibop](https://kaos.sh/bibop) tests for RPM packages.
 
 ### Installation
