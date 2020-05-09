@@ -1,0 +1,116 @@
+#! /usr/bin/env bash
+# shellcheck disable=SC1117,SC2034,SC2154
+
+################################################################################
+
+NORM=0
+BOLD=1
+UNLN=4
+RED=31
+GREEN=32
+YELLOW=33
+BLUE=34
+MAG=35
+CYAN=36
+GREY=37
+DARK=90
+
+CL_NORM="\e[0m"
+CL_BOLD="\e[0;${BOLD};49m"
+CL_UNLN="\e[0;${UNLN};49m"
+CL_RED="\e[0;${RED};49m"
+CL_GREEN="\e[0;${GREEN};49m"
+CL_YELLOW="\e[0;${YELLOW};49m"
+CL_BLUE="\e[0;${BLUE};49m"
+CL_MAG="\e[0;${MAG};49m"
+CL_CYAN="\e[0;${CYAN};49m"
+CL_GREY="\e[0;${GREY};49m"
+CL_DARK="\e[0;${DARK};49m"
+CL_BL_RED="\e[1;${RED};49m"
+CL_BL_GREEN="\e[1;${GREEN};49m"
+CL_BL_YELLOW="\e[1;${YELLOW};49m"
+CL_BL_BLUE="\e[1;${BLUE};49m"
+CL_BL_MAG="\e[1;${MAG};49m"
+CL_BL_CYAN="\e[1;${CYAN};49m"
+CL_BL_GREY="\e[1;${GREY};49m"
+
+################################################################################
+
+IMAGE="essentialkaos/bop:latest"
+
+################################################################################
+
+# Main func
+#
+# *: All unparsed arguments passed to the script
+#
+# Code: No
+# Echo: No
+main() {
+  if ! hasApp "docker" ; then
+    error "You must install Docker first"
+    exit 1
+  fi
+
+  run "$@"
+
+  exit $?
+}
+
+# Runs bop and generate recipe
+#
+# *: bop options and arguments
+#
+# Code: No
+# Echo: No
+run() {
+  local cwd
+
+  cwd=$(pwd)
+
+  # shellcheck disable=SC2086,SC2048
+  docker run --rm -it -v "${cwd}:/bop" "${IMAGE}" $*
+
+  return $?
+}
+
+# Checks if some app is installed
+#
+# 1: Binray name (String)
+#
+# Code: Yes
+# Echo: No
+hasApp() {
+  type "$1" &> /dev/null
+  return $?
+}
+
+# Shows message
+#
+# 1: Message (String)
+# 2: Message color (Number) [Optional]
+#
+# Code: No
+# Echo: No
+show() {
+  if [[ -n "$2" && -z "$no_colors" ]] ; then
+    echo -e "\e[${2}m${1}\e[0m"
+  else
+    echo -e "$*"
+  fi
+}
+
+# Shows error message
+#
+# 1: Message (String)
+# 2: Message color (Number) [Optional]
+#
+# Code: No
+# Echo: No
+error() {
+  show "$@" 1>&2
+}
+
+################################################################################
+
+main "$@"
