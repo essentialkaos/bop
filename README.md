@@ -35,7 +35,7 @@ go get -u github.com/essentialkaos/bop
 
 #### Prebuilt binaries
 
-You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](https://apps.kaos.st/bop/latest):
+You can download prebuilt binaries for Linux from [EK Apps Repository](https://apps.kaos.st/bop/latest):
 
 ```bash
 bash <(curl -fsSL https://apps.kaos.st/get) bop
