@@ -1,13 +1,13 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/bop.svg"/></a></p>
 
-<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
-
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/bop"><img src="https://travis-ci.com/essentialkaos/bop.svg?branch=master" alt="TravisCI" /></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-bop-master"><img alt="codebeat badge" src="https://codebeat.co/badges/e0f30749-1508-45dd-8d1c-c074b200f101" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/bop"><img src="https://goreportcard.com/badge/github.com/essentialkaos/bop" alt="GoReportCard" /></a>
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg" alt="License" /></a>
 </p>
+
+<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
 
 </br>
 
