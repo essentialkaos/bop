@@ -24,8 +24,9 @@ import (
 type Package struct {
 	Name       string
 	Dist       string
-	Payload    []*Object
 	Scriptlets string
+	Payload    []*Object
+	IsSrc      bool
 }
 
 // Object contains info about payload object
@@ -47,7 +48,7 @@ func ReadRPM(file string) (*Package, error) {
 
 	pkg := &Package{}
 
-	pkg.Name, pkg.Dist, err = extractPackageNameAndDist(file)
+	pkg.Name, pkg.Dist, pkg.IsSrc, err = extractPackageInfo(file)
 
 	if err != nil {
 		return nil, err
@@ -136,18 +137,19 @@ func extractScriptlets(file string) (string, error) {
 	return execRPMCommand("-qp", "--scripts", file)
 }
 
-// extractPackageNameAndDist extracts package name and dist
-func extractPackageNameAndDist(file string) (string, string, error) {
-	data, err := execRPMCommand("-qp", "--qf", "%{name} %{release}", file)
+// extractPackageInfo extracts package name, dist and src package flag
+func extractPackageInfo(file string) (string, string, bool, error) {
+	data, err := execRPMCommand("-qp", "--qf", "%{name} %{release} %{sourcepackage}", file)
 
 	if err != nil {
-		return "", "", err
+		return "", "", false, err
 	}
 
 	name := strutil.ReadField(data, 0, false, " ")
 	dist := extractDist(strutil.ReadField(data, 1, false, " "))
+	isSrc := strutil.ReadField(data, 2, false, " ") == "1"
 
-	return name, dist, nil
+	return name, dist, isSrc, nil
 }
 
 // parseDumpData parses dump data

@@ -75,8 +75,13 @@ func readPackagesData(files []string) ([]*rpm.Package, error) {
 
 	for _, file := range files {
 		pkg, err := rpm.ReadRPM(file)
+
 		if err != nil {
 			return nil, err
+		}
+
+		if pkg.IsSrc {
+			continue
 		}
 
 		pkgs = append(pkgs, pkg)
