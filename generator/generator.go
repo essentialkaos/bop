@@ -50,7 +50,7 @@ func genOutputName(name string, info *data.Info) string {
 		case len(info.Services) != 0,
 			len(info.Python2Modules) != 0,
 			len(info.Python3Modules) != 0:
-			return fmt.Sprintf("%s-c%d.bibop", name, osVersion)
+			return fmt.Sprintf("%s-c%d.recipe", name, osVersion)
 		}
 	}
 
