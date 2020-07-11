@@ -50,7 +50,7 @@ func genOutputName(name string, info *data.Info) string {
 		case len(info.Services) != 0,
 			len(info.Python2Modules) != 0,
 			len(info.Python3Modules) != 0:
-			return fmt.Sprintf("%s-c%d.bibop", name, osVersion)
+			return fmt.Sprintf("%s-c%d.recipe", name, osVersion)
 		}
 	}
 
@@ -537,13 +537,13 @@ func getPythonModuleFilePath(path string) string {
 	pathDir := PATH.DirN(path, 4)
 
 	switch {
-	case strings.HasPrefix(pathDir, "/usr/lib/python3"):
+	case strings.HasPrefix(pathDir, "/usr/lib/python2"):
 		path = strings.Replace(path, pathDir, "{PYTHON2_SITELIB}", -1)
-	case strings.HasPrefix(pathDir, "/usr/lib64/python3"):
+	case strings.HasPrefix(pathDir, "/usr/lib64/python2"):
 		path = strings.Replace(path, pathDir, "{PYTHON2_SITEARCH}", -1)
-	case strings.HasPrefix(pathDir, "/usr/local/lib/python3"):
+	case strings.HasPrefix(pathDir, "/usr/local/lib/python2"):
 		path = strings.Replace(path, pathDir, "{PYTHON2_SITELIB_LOCAL}", -1)
-	case strings.HasPrefix(pathDir, "/usr/local/lib64/python3"):
+	case strings.HasPrefix(pathDir, "/usr/local/lib64/python2"):
 		path = strings.Replace(path, pathDir, "{PYTHON2_SITEARCH_LOCAL}", -1)
 	case strings.HasPrefix(pathDir, "/usr/lib/python3"):
 		path = strings.Replace(path, pathDir, "{PYTHON3_SITELIB}", -1)
