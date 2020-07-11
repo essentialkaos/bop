@@ -142,6 +142,10 @@ func genServicesCheck(info *data.Info, services []string) string {
 				continue
 			}
 
+			if strings.Contains(service, "@") {
+				continue
+			}
+
 			switch i {
 			case 0:
 				data += genServiceStartCheck(service, osVersion)
