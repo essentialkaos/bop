@@ -50,7 +50,7 @@ You can use [Docker containers](https://hub.docker.com/r/essentialkaos/bop) for 
 ```bash
 curl -#L -o bop-docker https://kaos.sh/bop/bop-docker
 chmod +x bop-docker
-[sudo] mv bop-docker /usr/bin/
+sudo mv bop-docker /usr/bin/
 bop-docker test-name package.rpm
 ```
 
@@ -60,19 +60,19 @@ You can generate completion for `bash`, `zsh` or `fish` shell.
 
 Bash:
 ```
-[sudo] bop --completion=bash 1> /etc/bash_completion.d/bop
+sudo bop --completion=bash 1> /etc/bash_completion.d/bop
 ```
 
 
 ZSH:
 ```
-[sudo] bop --completion=zsh 1> /usr/share/zsh/site-functions/bop
+sudo bop --completion=zsh 1> /usr/share/zsh/site-functions/bop
 ```
 
 
 Fish:
 ```
-[sudo] bop --completion=fish 1> /usr/share/fish/vendor_completions.d/bop.fish
+sudo bop --completion=fish 1> /usr/share/fish/vendor_completions.d/bop.fish
 ```
 
 ### Usage
