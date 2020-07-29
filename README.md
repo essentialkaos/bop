@@ -4,7 +4,7 @@
   <a href="https://travis-ci.com/essentialkaos/bop"><img src="https://travis-ci.com/essentialkaos/bop.svg?branch=master" alt="TravisCI" /></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-bop-master"><img alt="codebeat badge" src="https://codebeat.co/badges/e0f30749-1508-45dd-8d1c-c074b200f101" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/bop"><img src="https://goreportcard.com/badge/github.com/essentialkaos/bop" alt="GoReportCard" /></a>
-  <img src="https://github.com/essentialkaos/bop/workflows/CodeQL/badge.svg">
+  <a href="https://github.com/essentialkaos/bop/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/bop/workflows/CodeQL/badge.svg" /></a>
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg" alt="License" /></a>
 </p>
 
