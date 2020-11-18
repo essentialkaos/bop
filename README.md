@@ -1,7 +1,7 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/bop.svg"/></a></p>
 
 <p align="center">
-  <a href="https://travis-ci.com/essentialkaos/bop"><img src="https://travis-ci.com/essentialkaos/bop.svg?branch=master" alt="TravisCI" /></a>
+  <a href="https://github.com/essentialkaos/bop/actions"><img src="https://github.com/essentialkaos/bop/workflows/CI/badge.svg" alt="GitHub Actions Status" /></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-bop-master"><img alt="codebeat badge" src="https://codebeat.co/badges/e0f30749-1508-45dd-8d1c-c074b200f101" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/bop"><img src="https://goreportcard.com/badge/github.com/essentialkaos/bop" alt="GoReportCard" /></a>
   <a href="https://github.com/essentialkaos/bop/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/bop/workflows/CodeQL/badge.svg" /></a>
@@ -18,13 +18,7 @@
 
 #### From source
 
-Before the initial install, allow git to use redirects for [pkg.re](https://github.com/essentialkaos/pkgre) service (_reason why you should do this described [here](https://github.com/essentialkaos/pkgre#git-support)_):
-
-```
-git config --global http.https://pkg.re.followRedirects true
-```
-
-To build the `bop` from scratch, make sure you have a working Go 1.13+ workspace (_[instructions](https://golang.org/doc/install)_), then:
+To build the `bop` from scratch, make sure you have a working Go 1.14+ workspace (_[instructions](https://golang.org/doc/install)_), then:
 
 ```
 go get github.com/essentialkaos/bop
@@ -100,8 +94,8 @@ Examples
 
 | Branch | Status |
 |--------|--------|
-| `master` | [![Build Status](https://travis-ci.com/essentialkaos/bop.svg?branch=master)](https://travis-ci.com/essentialkaos/bop) |
-| `develop` | [![Build Status](https://travis-ci.com/essentialkaos/bop.svg?branch=develop)](https://travis-ci.com/essentialkaos/bop) |
+| `master` | [![CI](https://github.com/essentialkaos/bop/workflows/CI/badge.svg?branch=master)](https://github.com/essentialkaos/bop/actions) |
+| `develop` | [![CI](https://github.com/essentialkaos/bop/workflows/CI/badge.svg?branch=develop)](https://github.com/essentialkaos/bop/actions) |
 
 ### Contributing
 
