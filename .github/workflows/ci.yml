@@ -15,10 +15,11 @@ jobs:
 
     env:
       SRC_DIR: src/github.com/${{ github.repository }}
+      GO111MODULE: auto
 
     strategy:
       matrix:
-        go: [ '1.14.x', '1.15.x' ]
+        go: [ '1.15.x', '1.16.x' ]
 
     steps:
       - name: Set up Go
@@ -78,7 +79,7 @@ jobs:
     needs: Go
 
     env:
-      HADOLINT_VERSION: 1.18.2
+      HADOLINT_VERSION: 2.3.0
 
     steps:
       - name: Checkout
