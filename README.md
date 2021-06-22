@@ -2,7 +2,6 @@
 
 <p align="center">
   <a href="https://kaos.sh/w/bop/ci"><img src="https://kaos.sh/w/bop/ci.svg" alt="GitHub Actions CI Status" /></a>
-  <a href="https://kaos.sh/r/bop"><img src="https://kaos.sh/r/bop.svg" alt="GoReportCard" /></a>
   <a href="https://kaos.sh/b/XXXXXX"><img src="https://codebeat.co/badges/e0f30749-1508-45dd-8d1c-c074b200f101" alt="Codebeat badge" /></a>
   <a href="https://kaos.sh/w/bop/codeql"><img src="https://kaos.sh/w/bop/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
