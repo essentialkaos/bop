@@ -54,7 +54,7 @@ jobs:
     needs: Go
 
     env:
-      SHELLCHECK_VERSION: 0.7.1
+      SHELLCHECK_VERSION: 0.7.2
 
     steps:
       - name: Checkout
@@ -79,7 +79,7 @@ jobs:
     needs: Go
 
     env:
-      HADOLINT_VERSION: 2.3.0
+      HADOLINT_VERSION: 2.5.0
 
     steps:
       - name: Checkout
