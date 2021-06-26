@@ -2,7 +2,8 @@
 
 <p align="center">
   <a href="https://kaos.sh/w/bop/ci"><img src="https://kaos.sh/w/bop/ci.svg" alt="GitHub Actions CI Status" /></a>
-  <a href="https://kaos.sh/b/XXXXXX"><img src="https://codebeat.co/badges/e0f30749-1508-45dd-8d1c-c074b200f101" alt="Codebeat badge" /></a>
+  <a href="https://kaos.sh/r/bop"><img src="https://kaos.sh/r/bop.svg" alt="GoReportCard" /></a>
+  <a href="https://kaos.sh/b/bop"><img src="https://kaos.sh/b/e0f30749-1508-45dd-8d1c-c074b200f101.svg" alt="Codebeat badge" /></a>
   <a href="https://kaos.sh/w/bop/codeql"><img src="https://kaos.sh/w/bop/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
 </p>
@@ -17,16 +18,10 @@
 
 #### From source
 
-To build the `bop` from scratch, make sure you have a working Go 1.14+ workspace (_[instructions](https://golang.org/doc/install)_), then:
+To build the `bop` from scratch, make sure you have a working Go 1.15+ workspace (_[instructions](https://golang.org/doc/install)_), then:
 
 ```
-go get github.com/essentialkaos/bop
-```
-
-If you want to update `bop` to latest stable release, do:
-
-```
-go get -u github.com/essentialkaos/bop
+go install github.com/essentialkaos/bop
 ```
 
 #### Prebuilt binaries
