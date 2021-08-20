@@ -32,9 +32,9 @@ type Package struct {
 // Object contains info about payload object
 type Object struct {
 	Path     string
-	Mode     os.FileMode
 	User     string
 	Group    string
+	Mode     os.FileMode
 	IsConfig bool
 	IsDir    bool
 	IsLink   bool
