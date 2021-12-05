@@ -26,7 +26,7 @@ FROM essentialkaos/centos:7
 LABEL name="Bop Image on CentOS 7" \
       vendor="ESSENTIAL KAOS" \
       maintainer="Anton Novojilov" \
-      license="EKOL" \
+      license="Apache-2.0" \
       version="2021.07.21"
 
 COPY --from=builder /go/src/github.com/essentialkaos/bop/bop /usr/bin/
