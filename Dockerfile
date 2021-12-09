@@ -23,11 +23,13 @@ RUN yum -y -q install https://yum.kaos.st/kaos-repo-latest.el7.noarch.rpm && \
 
 FROM essentialkaos/centos:7
 
-LABEL name="Bop Image on CentOS 7" \
-      vendor="ESSENTIAL KAOS" \
-      maintainer="Anton Novojilov" \
-      license="EKOL" \
-      version="2021.07.21"
+LABEL org.opencontainers.image.title="bop" \
+      org.opencontainers.image.description="Utility for generating bibop tests for RPM packages" \
+      org.opencontainers.image.vendor="ESSENTIAL KAOS" \
+      org.opencontainers.image.authors="Anton Novojilov" \
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.url="https://kaos.sh/bop" \
+      org.opencontainers.image.source="https://github.com/essentialkaos/bop"
 
 COPY --from=builder /go/src/github.com/essentialkaos/bop/bop /usr/bin/
 
