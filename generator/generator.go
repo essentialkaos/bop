@@ -2,7 +2,7 @@ package generator
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                         Copyright (c) 2020 ESSENTIAL KAOS                          //
+//                         Copyright (c) 2022 ESSENTIAL KAOS                          //
 //      Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>     //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"strings"
 
-	PATH "pkg.re/essentialkaos/ek.v12/path"
-	"pkg.re/essentialkaos/ek.v12/sliceutil"
+	PATH "github.com/essentialkaos/ek/v12/path"
+	"github.com/essentialkaos/ek/v12/sliceutil"
 
 	"github.com/essentialkaos/bop/data"
 	"github.com/essentialkaos/bop/rpm"
