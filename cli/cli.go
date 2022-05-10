@@ -36,7 +36,7 @@ import (
 // App info
 const (
 	APP  = "bop"
-	VER  = "1.1.4"
+	VER  = "1.1.5"
 	DESC = "Utility for generating formal bibop tests for RPM packages"
 )
 
@@ -97,8 +97,8 @@ func Init() {
 		return
 	}
 
-	name := args[0]
-	files := args[1:]
+	name := args.Get(0).String()
+	files := args.Strings()[1:]
 
 	checkSystem()
 	checkFiles(files)
