@@ -34,7 +34,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) bop
 
 ### Docker support
 
-Official `bop` images available on [Docker Hub](http://kaos.sh/d/bop) and [GitHub Container Registry](https://kaos.sh/p/bop). Install the latest version of Docker, then:
+Official `bop` images available on [Docker Hub](https://kaos.sh/d/bop) and [GitHub Container Registry](https://kaos.sh/p/bop). Install the latest version of Docker, then:
 
 ```bash
 curl -#L -o bop-docker https://kaos.sh/bop/bop-docker
