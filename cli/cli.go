@@ -36,7 +36,7 @@ import (
 // App info
 const (
 	APP  = "bop"
-	VER  = "1.1.5"
+	VER  = "1.1.6"
 	DESC = "Utility for generating formal bibop tests for RPM packages"
 )
 
