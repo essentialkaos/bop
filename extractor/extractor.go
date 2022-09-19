@@ -141,7 +141,7 @@ func addPackageInfo(info *data.Info, pkg *rpm.Package) {
 func addAppsInfo(info *data.Info, pkg *rpm.Package) {
 	for _, obj := range pkg.Payload {
 		switch {
-		case obj.IsDir, obj.IsLink:
+		case obj.IsDir:
 			continue
 		case obj.Mode|0111 == 0:
 			continue
