@@ -102,7 +102,7 @@ jobs:
       - name: Check dockerfiles with Hadolint
         uses: essentialkaos/hadolint-action@v1
         with:
-          files: Dockerfile
+          files: .docker/ol7.docker .docker/ol8.docker .docker/ol9.docker
 
   DockerBuild:
     name: Docker Build Check
