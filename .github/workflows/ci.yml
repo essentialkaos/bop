@@ -115,7 +115,7 @@ jobs:
 
     strategy:
       matrix:
-        image: [ 'alpine' ]
+        image: [ 'ol7', 'ol8', 'ol9' ]
 
     steps:
       - name: Check event type
