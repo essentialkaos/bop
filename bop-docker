@@ -36,8 +36,8 @@ CL_BL_GREY="\e[1;${GREY};49m"
 
 ################################################################################
 
-IMAGE_DH="essentialkaos/bop:latest"
-IMAGE_GH="ghcr.io/essentialkaos/bop:latest"
+IMAGE_DH="essentialkaos/bop:ol8"
+IMAGE_GH="ghcr.io/essentialkaos/bop:ol8"
 
 BOP_IMAGE="${IMAGE:-$IMAGE_GH}"
 
