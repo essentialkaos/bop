@@ -1,0 +1,41 @@
+## REGISTRY CONFIGURATION ######################################################
+
+ARG REGISTRY="docker.io"
+
+## BUILDER #####################################################################
+
+FROM ${REGISTRY}/essentialkaos/oraclelinux:9 as builder
+
+RUN mkdir -p "/go/src" && chmod -R 777 "/go"
+
+ENV GOPATH=/go
+
+WORKDIR /go/src/github.com/essentialkaos/bop
+
+COPY . .
+
+# hadolint ignore=DL3031,DL3041
+RUN dnf -y -q install https://yum.kaos.st/kaos-repo-latest.el9.noarch.rpm && \
+    dnf -y -q install make golang git && \
+    dnf clean all && make deps && make all
+
+## FINAL IMAGE #################################################################
+
+FROM ${REGISTRY}/essentialkaos/oraclelinux:9
+
+LABEL org.opencontainers.image.title="bop" \
+      org.opencontainers.image.description="Utility for generating bibop tests for RPM packages" \
+      org.opencontainers.image.vendor="ESSENTIAL KAOS" \
+      org.opencontainers.image.authors="Anton Novojilov" \
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.url="https://kaos.sh/bop" \
+      org.opencontainers.image.source="https://github.com/essentialkaos/bop"
+
+COPY --from=builder /go/src/github.com/essentialkaos/bop/bop /usr/bin/
+
+VOLUME /bop
+WORKDIR /bop
+
+ENTRYPOINT ["bop"]
+
+################################################################################
