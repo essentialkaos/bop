@@ -4,9 +4,7 @@ _Before opening an issue, search for similar bug reports or feature requests on 
 
 **System info:**
 
-* **Version used (`bop -v`):** 
-* **OS (e.g. from `/etc/*-release`):** 
-* **Kernel (`uname -a`):** 
+* **Verbose version info (`bop -vv`):** 
 * **Install tools:** 
 
 **Steps to reproduce:**
