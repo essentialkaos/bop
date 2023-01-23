@@ -2,7 +2,7 @@ package cli
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                         Copyright (c) 2022 ESSENTIAL KAOS                          //
+//                         Copyright (c) 2023 ESSENTIAL KAOS                          //
 //      Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>     //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -24,11 +24,13 @@ import (
 	"github.com/essentialkaos/ek/v12/usage/completion/bash"
 	"github.com/essentialkaos/ek/v12/usage/completion/fish"
 	"github.com/essentialkaos/ek/v12/usage/completion/zsh"
+	"github.com/essentialkaos/ek/v12/usage/man"
 	"github.com/essentialkaos/ek/v12/usage/update"
 
 	"github.com/essentialkaos/bop/extractor"
 	"github.com/essentialkaos/bop/generator"
 	"github.com/essentialkaos/bop/rpm"
+	"github.com/essentialkaos/bop/support"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -36,7 +38,7 @@ import (
 // App info
 const (
 	APP  = "bop"
-	VER  = "1.1.6"
+	VER  = "1.2.0"
 	DESC = "Utility for generating formal bibop tests for RPM packages"
 )
 
@@ -50,7 +52,9 @@ const (
 	OPT_HELP     = "h:help"
 	OPT_VER      = "v:version"
 
-	OPT_COMPLETION = "completion"
+	OPT_VERB_VER     = "vv:verbose-version"
+	OPT_COMPLETION   = "completion"
+	OPT_GENERATE_MAN = "generate-man"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -62,13 +66,15 @@ var optMap = options.Map{
 	OPT_HELP:     {Type: options.BOOL, Alias: "u:usage"},
 	OPT_VER:      {Type: options.BOOL, Alias: "ver"},
 
-	OPT_COMPLETION: {},
+	OPT_VERB_VER:     {Type: options.BOOL},
+	OPT_COMPLETION:   {},
+	OPT_GENERATE_MAN: {Type: options.BOOL},
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 // Init is main function
-func Init() {
+func Init(gitRev string, gomod []byte) {
 	args, errs := options.Parse(optMap)
 
 	if len(errs) != 0 {
@@ -83,16 +89,18 @@ func Init() {
 		fmtc.DisableColors = true
 	}
 
-	if options.Has(OPT_COMPLETION) {
-		genCompletion()
-	}
-
-	if options.GetB(OPT_VER) {
-		showAbout()
+	switch {
+	case options.Has(OPT_COMPLETION):
+		os.Exit(genCompletion())
+	case options.Has(OPT_GENERATE_MAN):
+		os.Exit(genMan())
+	case options.GetB(OPT_VER):
+		showAbout(gitRev)
 		return
-	}
-
-	if options.GetB(OPT_HELP) || len(args) < 2 {
+	case options.GetB(OPT_VERB_VER):
+		support.ShowSupportInfo(APP, VER, gitRev, gomod)
+		return
+	case options.GetB(OPT_HELP) || len(args) < 2:
 		showUsage()
 		return
 	}
@@ -205,23 +213,13 @@ func showUsage() {
 	genUsage().Render()
 }
 
-// genUsage generates usage info
-func genUsage() *usage.Info {
-	info := usage.NewInfo("", "name", "package…")
-
-	info.AddOption(OPT_OUTPUT, "Output file", "file")
-	info.AddOption(OPT_SERVICE, "List of services for checking {c}(mergable){!}", "service")
-	info.AddOption(OPT_NO_COLOR, "Disable colors in output")
-	info.AddOption(OPT_HELP, "Show this help message")
-	info.AddOption(OPT_VER, "Show version")
-
-	info.AddExample("redis redis*.rpm", "Generate tests for Redis package")
-
-	return info
+// showAbout prints info about version
+func showAbout(gitRev string) {
+	genAbout(gitRev).Render()
 }
 
 // genCompletion generates completion for different shells
-func genCompletion() {
+func genCompletion() int {
 	info := genUsage()
 
 	switch options.GetS(OPT_COMPLETION) {
@@ -232,15 +230,44 @@ func genCompletion() {
 	case "zsh":
 		fmt.Printf(zsh.Generate(info, optMap, "bop"))
 	default:
-		os.Exit(1)
+		return 1
 	}
 
-	os.Exit(0)
+	return 0
 }
 
-// showAbout prints info about version
-func showAbout() {
-	about := &usage.About{
+// genMan generates man page
+func genMan() int {
+	fmt.Println(
+		man.Generate(
+			genUsage(),
+			genAbout(""),
+		),
+	)
+
+	return 0
+}
+
+// genUsage generates usage info
+func genUsage() *usage.Info {
+	info := usage.NewInfo("", "name", "package…")
+
+	info.AddOption(OPT_OUTPUT, "Output file", "file")
+	info.AddOption(OPT_SERVICE, "List of services for checking {c}(mergable){!}", "service")
+	info.AddOption(OPT_NO_COLOR, "Disable colors in output")
+	info.AddOption(OPT_HELP, "Show this help message")
+	info.AddOption(OPT_VER, "Show version")
+
+	info.AddExample("htop htop*.rpm", "Generate simple tests for package")
+	info.AddExample("redis redis*.rpm -s redis", "Generate tests with service check")
+	info.AddExample("-o zl.recipe zlib zlib*.rpm minizip*.rpm", "Generate tests with custom name")
+
+	return info
+}
+
+// genAbout generates info about version
+func genAbout(gitRev string) *usage.About {
+	return &usage.About{
 		App:           APP,
 		Version:       VER,
 		Desc:          DESC,
@@ -249,6 +276,4 @@ func showAbout() {
 		License:       "Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>",
 		UpdateChecker: usage.UpdateChecker{"essentialkaos/bop", update.GitHubChecker},
 	}
-
-	about.Render()
 }

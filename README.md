@@ -8,7 +8,7 @@
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
 </p>
 
-<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#man-documentation">Man documentation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
 
 </br>
 
@@ -64,6 +64,14 @@ Fish:
 sudo bop --completion=fish 1> /usr/share/fish/vendor_completions.d/bop.fish
 ```
 
+### Man documentation
+
+You can generate man page using next command:
+
+```bash
+bop --generate-man | sudo gzip > /usr/share/man/man1/bop.1.gz
+```
+
 ### Usage
 
 ```
@@ -79,9 +87,14 @@ Options
 
 Examples
 
-  bop redis redis*.rpm
-  Generate tests for Redis package
+  bop htop htop*.rpm
+  Generate simple tests for package
 
+  bop redis redis*.rpm -s redis
+  Generate tests with service check
+
+  bop -o zl.recipe zlib zlib*.rpm minizip*.rpm
+  Generate tests with custom name
 ```
 
 ### Build Status
