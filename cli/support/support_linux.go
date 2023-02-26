@@ -79,6 +79,7 @@ func showEnvInfo(pkgs Pkgs) {
 func collectEnvInfo() Pkgs {
 	return Pkgs{
 		getPackageInfo("rpm"),
+		getPackageInfo("cpio"),
 	}
 }
 
