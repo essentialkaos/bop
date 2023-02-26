@@ -44,7 +44,6 @@ func showOSInfo() {
 		if osInfo == nil {
 			fmtutil.Separator(false, "SYSTEM INFO")
 			printInfo(12, "Name", systemInfo.OS)
-			printInfo(12, "Version", systemInfo.Version)
 		}
 	}
 
@@ -80,6 +79,7 @@ func showEnvInfo(pkgs Pkgs) {
 func collectEnvInfo() Pkgs {
 	return Pkgs{
 		getPackageInfo("rpm"),
+		getPackageInfo("cpio"),
 	}
 }
 

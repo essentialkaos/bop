@@ -27,10 +27,10 @@ import (
 	"github.com/essentialkaos/ek/v12/usage/man"
 	"github.com/essentialkaos/ek/v12/usage/update"
 
+	"github.com/essentialkaos/bop/cli/support"
 	"github.com/essentialkaos/bop/extractor"
 	"github.com/essentialkaos/bop/generator"
 	"github.com/essentialkaos/bop/rpm"
-	"github.com/essentialkaos/bop/support"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -38,7 +38,7 @@ import (
 // App info
 const (
 	APP  = "bop"
-	VER  = "1.2.0"
+	VER  = "1.2.1"
 	DESC = "Utility for generating formal bibop tests for RPM packages"
 )
 
@@ -63,8 +63,8 @@ var optMap = options.Map{
 	OPT_OUTPUT:   {},
 	OPT_SERVICE:  {Mergeble: true},
 	OPT_NO_COLOR: {Type: options.BOOL},
-	OPT_HELP:     {Type: options.BOOL, Alias: "u:usage"},
-	OPT_VER:      {Type: options.BOOL, Alias: "ver"},
+	OPT_HELP:     {Type: options.BOOL},
+	OPT_VER:      {Type: options.BOOL},
 
 	OPT_VERB_VER:     {Type: options.BOOL},
 	OPT_COMPLETION:   {},
@@ -96,13 +96,13 @@ func Init(gitRev string, gomod []byte) {
 		os.Exit(genMan())
 	case options.GetB(OPT_VER):
 		showAbout(gitRev)
-		return
+		os.Exit(0)
 	case options.GetB(OPT_VERB_VER):
 		support.ShowSupportInfo(APP, VER, gitRev, gomod)
-		return
+		os.Exit(0)
 	case options.GetB(OPT_HELP) || len(args) < 2:
 		showUsage()
-		return
+		os.Exit(0)
 	}
 
 	name := args.Get(0).String()
@@ -267,7 +267,7 @@ func genUsage() *usage.Info {
 
 // genAbout generates info about version
 func genAbout(gitRev string) *usage.About {
-	return &usage.About{
+	about := &usage.About{
 		App:           APP,
 		Version:       VER,
 		Desc:          DESC,
@@ -276,4 +276,10 @@ func genAbout(gitRev string) *usage.About {
 		License:       "Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>",
 		UpdateChecker: usage.UpdateChecker{"essentialkaos/bop", update.GitHubChecker},
 	}
+
+	if gitRev != "" {
+		about.Build = "git:" + gitRev
+	}
+
+	return about
 }
