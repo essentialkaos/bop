@@ -7,18 +7,30 @@ on:
     branches: [master]
   schedule:
     - cron: '30 12 */15 * *'
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: 'Force workflow run'
+        required: true
+        type: choice
+        options: [yes, no]
+
+permissions:
+  actions: read
+  contents: read
+  statuses: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  SRC_DIR: src/github.com/${{ github.repository }}
+
 jobs:
   Go:
     name: Go
     runs-on: ubuntu-latest
-
-    env:
-      SRC_DIR: src/github.com/${{ github.repository }}
 
     strategy:
       matrix:
@@ -48,10 +60,6 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: Go
-
-    env:
-      SRC_DIR: src/github.com/${{ github.repository }}
-      GO111MODULE: auto
 
     steps:
       - name: Set up Go
