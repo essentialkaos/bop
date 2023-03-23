@@ -43,6 +43,10 @@ BOP_IMAGE="${IMAGE:-$IMAGE_GH}"
 
 ################################################################################
 
+engine=""
+
+################################################################################
+
 # Main func
 #
 # *: All unparsed arguments passed to the script
@@ -50,7 +54,9 @@ BOP_IMAGE="${IMAGE:-$IMAGE_GH}"
 # Code: No
 # Echo: No
 main() {
-  if ! hasApp "docker" ; then
+  engine=$(getContainerEngine)
+
+  if [[ -z "$engine" ]] ; then
     error "You must install Docker first"
     exit 1
   fi
@@ -72,9 +78,23 @@ run() {
   cwd=$(pwd)
 
   # shellcheck disable=SC2086,SC2048
-  docker run --rm -it -v "${cwd}:/bop" "$BOP_IMAGE" $*
+  $engine run --rm -it -v "${cwd}:/bop" "$BOP_IMAGE" $*
 
   return $?
+}
+
+# Get used container engine
+#
+# Code: No
+# Echo: Engine name (String)
+getContainerEngine() {
+  if hasApp "docker" ; then
+    echo "docker"
+  fi
+
+  if hasApp "podman" ; then
+    echo "podman"
+  fi
 }
 
 # Checks if given app is installed
