@@ -95,7 +95,7 @@ jobs:
       - name: Check scripts with Shellcheck
         uses: essentialkaos/shellcheck-action@v1
         with:
-          files: bop-docker
+          files: bop-container
 
   Hadolint:
     name: Hadolint
