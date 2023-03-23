@@ -8,7 +8,7 @@
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
 </p>
 
-<p align="center"><a href="#installation">Installation</a> • <a href="#docker-support">Docker support</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#man-documentation">Man documentation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#installation">Installation</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#man-documentation">Man documentation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
 
 </br>
 
@@ -20,8 +20,8 @@
 
 To build the `bop` from scratch, make sure you have a working Go 1.18+ workspace (_[instructions](https://golang.org/doc/install)_), then:
 
-```
-go install github.com/essentialkaos/bop
+```bash
+go install github.com/essentialkaos/bop@latest
 ```
 
 #### Prebuilt binaries
@@ -32,15 +32,15 @@ You can download prebuilt binaries for Linux from [EK Apps Repository](https://a
 bash <(curl -fsSL https://apps.kaos.st/get) bop
 ```
 
-### Docker support
+#### Container image
 
-Official `bop` images available on [Docker Hub](https://kaos.sh/d/bop) and [GitHub Container Registry](https://kaos.sh/p/bop). Install the latest version of Docker, then:
+Official `bop` images available on [GitHub Container Registry](https://kaos.sh/p/bop) and [Docker Hub](https://kaos.sh/d/bop). Install the latest version of Podman or Docker, then:
 
 ```bash
-curl -#L -o bop-docker https://kaos.sh/bop/bop-docker
-chmod +x bop-docker
-sudo mv bop-docker /usr/bin/
-bop-docker test-name package.rpm
+curl -#L -o bop-container https://kaos.sh/bop/bop-container
+chmod +x bop-container
+sudo mv bop-container /usr/bin/bop
+bop test-name package.rpm
 ```
 
 ### Command-line completion
@@ -48,19 +48,19 @@ bop-docker test-name package.rpm
 You can generate completion for `bash`, `zsh` or `fish` shell.
 
 Bash:
-```
+```bash
 sudo bop --completion=bash 1> /etc/bash_completion.d/bop
 ```
 
 
 ZSH:
-```
+```bash
 sudo bop --completion=zsh 1> /usr/share/zsh/site-functions/bop
 ```
 
 
 Fish:
-```
+```bash
 sudo bop --completion=fish 1> /usr/share/fish/vendor_completions.d/bop.fish
 ```
 
