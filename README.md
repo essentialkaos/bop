@@ -34,7 +34,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) bop
 
 #### Container image
 
-Official `bop` images available on [GitHub Container Registry](https://kaos.sh/p/bop) and [Docker Hub](https://kaos.sh/d/bop). Install the latest version of Podman or Docker, then:
+Official `bop` images available on [GitHub Container Registry](https://kaos.sh/p/bop) and [Docker Hub](https://kaos.sh/d/bop). Install the latest version of [Podman](https://podman.io/getting-started/installation.html) or [Docker](https://docs.docker.com/engine/install/), then:
 
 ```bash
 curl -#L -o bop-container https://kaos.sh/bop/bop-container

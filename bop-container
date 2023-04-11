@@ -57,7 +57,7 @@ main() {
   engine=$(getContainerEngine)
 
   if [[ -z "$engine" ]] ; then
-    error "You must install Docker first"
+    error "You must install Podman or Docker first"
     exit 1
   fi
 
