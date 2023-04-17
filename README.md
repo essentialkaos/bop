@@ -80,7 +80,7 @@ Usage: bop {options} name package…
 Options
 
   --output, -o file        Output file
-  --service, -s service    List of services for checking (mergable)
+  --service, -s service    List of services for checking (mergeable)
   --no-color, -nc          Disable colors in output
   --help, -h               Show this help message
   --version, -v            Show version

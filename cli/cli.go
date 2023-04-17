@@ -229,7 +229,7 @@ func printWarn(f string, a ...interface{}) {
 	fmtc.Fprintf(os.Stderr, "{y}"+f+"{!}\n", a...)
 }
 
-// printErrorAndExit print error mesage and exit with exit code 1
+// printErrorAndExit print error message and exit with exit code 1
 func printErrorAndExit(f string, a ...interface{}) {
 	printError(f, a...)
 	os.Exit(1)
@@ -270,7 +270,7 @@ func genUsage() *usage.Info {
 	info := usage.NewInfo("", "name", "package…")
 
 	info.AddOption(OPT_OUTPUT, "Output file", "file")
-	info.AddOption(OPT_SERVICE, "List of services for checking {c}(mergable){!}", "service")
+	info.AddOption(OPT_SERVICE, "List of services for checking {c}(mergeable){!}", "service")
 	info.AddOption(OPT_NO_COLOR, "Disable colors in output")
 	info.AddOption(OPT_HELP, "Show this help message")
 	info.AddOption(OPT_VER, "Show version")
