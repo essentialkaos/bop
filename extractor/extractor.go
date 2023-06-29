@@ -317,7 +317,7 @@ func isPackagesWithMixedDist(pkgs []*rpm.Package) bool {
 	return false
 }
 
-// formatLibName fromats lib name to glob
+// formatLibName formats lib name to glob
 func formatLibName(file string) string {
 	basename := path.Base(file)
 	soIndex := strings.Index(basename, ".so.")
