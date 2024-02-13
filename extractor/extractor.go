@@ -408,7 +408,7 @@ func parseUserAddCommand(command string) *data.User {
 	var isComment bool
 
 	for i := 0; i < 20; i++ {
-		option := strutil.ReadField(command, i, true, " ")
+		option := strutil.ReadField(command, i, true, ' ')
 
 		if strings.Contains(option, "\"") || strings.Contains(option, "'") {
 			isComment = !isComment
@@ -430,19 +430,19 @@ func parseUserAddCommand(command string) *data.User {
 			i++
 			continue // ignore option and value
 		case "-d", "--home-dir":
-			result.Home = strutil.ReadField(command, i+1, true, " ")
+			result.Home = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-g", "--gid":
-			result.GID = strutil.ReadField(command, i+1, true, " ")
+			result.GID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-u", "--uid":
-			result.UID = strutil.ReadField(command, i+1, true, " ")
+			result.UID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-s", "--shell":
-			result.Shell = strutil.ReadField(command, i+1, true, " ")
+			result.Shell = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-G", "--groups":
-			result.Group = strutil.ReadField(command, i+1, true, " ")
+			result.Group = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		default:
 			result.Name = option
@@ -465,7 +465,7 @@ func parseGroupAddCommand(command string) *data.Group {
 	command = command[gi+9:]
 
 	for i := 0; i < 10; i++ {
-		option := strutil.ReadField(command, i, true, " ")
+		option := strutil.ReadField(command, i, true, ' ')
 
 		switch option {
 		case "-f", "--force", "-o", "-non-unique", "-r", "--system":
@@ -474,7 +474,7 @@ func parseGroupAddCommand(command string) *data.Group {
 			i++
 			continue // ignore option and value
 		case "-g", "--gid":
-			result.GID = strutil.ReadField(command, i+1, true, " ")
+			result.GID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		default:
 			result.Name = option

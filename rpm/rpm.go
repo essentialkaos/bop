@@ -145,9 +145,9 @@ func extractPackageInfo(file string) (string, string, bool, error) {
 		return "", "", false, err
 	}
 
-	name := strutil.ReadField(data, 0, false, " ")
-	dist := extractDist(strutil.ReadField(data, 1, false, " "))
-	isSrc := strutil.ReadField(data, 2, false, " ") == "1"
+	name := strutil.ReadField(data, 0, false, ' ')
+	dist := extractDist(strutil.ReadField(data, 1, false, ' '))
+	isSrc := strutil.ReadField(data, 2, false, ' ') == "1"
 
 	return name, dist, isSrc, nil
 }
@@ -168,17 +168,17 @@ func parseDumpData(data string) ([]*Object, error) {
 
 // parsePayloadInfo parses payload object info
 func parsePayloadInfo(data string) *Object {
-	modeStr := strutil.Tail(strutil.ReadField(data, 4, false, " "), 4)
+	modeStr := strutil.Tail(strutil.ReadField(data, 4, false, ' '), 4)
 	modeUint, _ := strconv.ParseUint(modeStr, 8, 32)
-	emptyHash := strings.Trim(strutil.ReadField(data, 3, false, " "), "0") == ""
-	link := strutil.ReadField(data, 10, false, " ")
+	emptyHash := strings.Trim(strutil.ReadField(data, 3, false, ' '), "0") == ""
+	link := strutil.ReadField(data, 10, false, ' ')
 
 	return &Object{
-		Path:     strutil.ReadField(data, 0, false, " "),
-		User:     strutil.ReadField(data, 5, false, " "),
-		Group:    strutil.ReadField(data, 6, false, " "),
+		Path:     strutil.ReadField(data, 0, false, ' '),
+		User:     strutil.ReadField(data, 5, false, ' '),
+		Group:    strutil.ReadField(data, 6, false, ' '),
 		Mode:     os.FileMode(modeUint),
-		IsConfig: strutil.ReadField(data, 7, false, " ") == "1",
+		IsConfig: strutil.ReadField(data, 7, false, ' ') == "1",
 		IsDir:    link == "X" && emptyHash,
 		IsLink:   link != "X" && emptyHash,
 	}
