@@ -2,7 +2,7 @@ package extractor
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                         Copyright (c) 2023 ESSENTIAL KAOS                          //
+//                         Copyright (c) 2024 ESSENTIAL KAOS                          //
 //      Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>     //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -111,6 +111,7 @@ func addPackageInfo(info *data.Info, pkg *rpm.Package) {
 
 	addAppsInfo(info, pkg)
 	addConfigsInfo(info, pkg)
+	addCompletions(info, pkg)
 	addLibsInfo(info, pkg)
 	addHeadersInfo(info, pkg)
 	addPkgConfigsInfo(info, pkg)
@@ -162,6 +163,20 @@ func addConfigsInfo(info *data.Info, pkg *rpm.Package) {
 	for _, obj := range pkg.Payload {
 		if obj.IsConfig {
 			info.Configs = append(info.Configs, obj)
+		}
+	}
+}
+
+// addCompletions extracts info about shell completions
+func addCompletions(info *data.Info, pkg *rpm.Package) {
+	for _, obj := range pkg.Payload {
+		if strutil.HasPrefixAny(
+			obj.Path,
+			"/usr/share/bash-completion/completions",
+			"/usr/share/fish/vendor_completions.d",
+			"/usr/share/zsh/site-functions",
+		) {
+			info.Completions = append(info.Completions, obj.Path)
 		}
 	}
 }
@@ -317,7 +332,7 @@ func isPackagesWithMixedDist(pkgs []*rpm.Package) bool {
 	return false
 }
 
-// formatLibName fromats lib name to glob
+// formatLibName formats lib name to glob
 func formatLibName(file string) string {
 	basename := path.Base(file)
 	soIndex := strings.Index(basename, ".so.")
@@ -408,7 +423,7 @@ func parseUserAddCommand(command string) *data.User {
 	var isComment bool
 
 	for i := 0; i < 20; i++ {
-		option := strutil.ReadField(command, i, true, " ")
+		option := strutil.ReadField(command, i, true, ' ')
 
 		if strings.Contains(option, "\"") || strings.Contains(option, "'") {
 			isComment = !isComment
@@ -430,19 +445,19 @@ func parseUserAddCommand(command string) *data.User {
 			i++
 			continue // ignore option and value
 		case "-d", "--home-dir":
-			result.Home = strutil.ReadField(command, i+1, true, " ")
+			result.Home = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-g", "--gid":
-			result.GID = strutil.ReadField(command, i+1, true, " ")
+			result.GID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-u", "--uid":
-			result.UID = strutil.ReadField(command, i+1, true, " ")
+			result.UID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-s", "--shell":
-			result.Shell = strutil.ReadField(command, i+1, true, " ")
+			result.Shell = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		case "-G", "--groups":
-			result.Group = strutil.ReadField(command, i+1, true, " ")
+			result.Group = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		default:
 			result.Name = option
@@ -465,7 +480,7 @@ func parseGroupAddCommand(command string) *data.Group {
 	command = command[gi+9:]
 
 	for i := 0; i < 10; i++ {
-		option := strutil.ReadField(command, i, true, " ")
+		option := strutil.ReadField(command, i, true, ' ')
 
 		switch option {
 		case "-f", "--force", "-o", "-non-unique", "-r", "--system":
@@ -474,7 +489,7 @@ func parseGroupAddCommand(command string) *data.Group {
 			i++
 			continue // ignore option and value
 		case "-g", "--gid":
-			result.GID = strutil.ReadField(command, i+1, true, " ")
+			result.GID = strutil.ReadField(command, i+1, true, ' ')
 			i++
 		default:
 			result.Name = option

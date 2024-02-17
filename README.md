@@ -18,7 +18,7 @@
 
 #### From source
 
-To build the `bop` from scratch, make sure you have a working Go 1.18+ workspace (_[instructions](https://golang.org/doc/install)_), then:
+To build the `bop` from scratch, make sure you have a working Go 1.18+ workspace (_[instructions](https://go.dev/doc/install)_), then:
 
 ```bash
 go install github.com/essentialkaos/bop@latest
@@ -34,7 +34,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) bop
 
 #### Container image
 
-Official `bop` images available on [GitHub Container Registry](https://kaos.sh/p/bop) and [Docker Hub](https://kaos.sh/d/bop). Install the latest version of Podman or Docker, then:
+Official `bop` images available on [GitHub Container Registry](https://kaos.sh/p/bop) and [Docker Hub](https://kaos.sh/d/bop). Install the latest version of [Podman](https://podman.io/getting-started/installation.html) or [Docker](https://docs.docker.com/engine/install/), then:
 
 ```bash
 curl -#L -o bop-container https://kaos.sh/bop/bop-container
@@ -80,7 +80,7 @@ Usage: bop {options} name package…
 Options
 
   --output, -o file        Output file
-  --service, -s service    List of services for checking (mergable)
+  --service, -s service    List of services for checking (mergeable)
   --no-color, -nc          Disable colors in output
   --help, -h               Show this help message
   --version, -v            Show version
