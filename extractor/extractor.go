@@ -111,6 +111,7 @@ func addPackageInfo(info *data.Info, pkg *rpm.Package) {
 
 	addAppsInfo(info, pkg)
 	addConfigsInfo(info, pkg)
+	addCompletions(info, pkg)
 	addLibsInfo(info, pkg)
 	addHeadersInfo(info, pkg)
 	addPkgConfigsInfo(info, pkg)
@@ -162,6 +163,20 @@ func addConfigsInfo(info *data.Info, pkg *rpm.Package) {
 	for _, obj := range pkg.Payload {
 		if obj.IsConfig {
 			info.Configs = append(info.Configs, obj)
+		}
+	}
+}
+
+// addCompletions extracts info about shell completions
+func addCompletions(info *data.Info, pkg *rpm.Package) {
+	for _, obj := range pkg.Payload {
+		if strutil.HasPrefixAny(
+			obj.Path,
+			"/usr/share/bash-completion/completions",
+			"/usr/share/fish/vendor_completions.d",
+			"/usr/share/zsh/site-functions",
+		) {
+			info.Completions = append(info.Completions, obj.Path)
 		}
 	}
 }

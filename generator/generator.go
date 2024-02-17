@@ -293,7 +293,7 @@ func genPythonWheelsCheck(info *data.Info) string {
 
 	for _, wheel := range info.PythonWheels {
 		data += fmt.Sprintf("  exist %s\n", wheel.Path)
-		data += fmt.Sprintf("  perms %s %o\n\n", wheel.Path, wheel.Mode)
+		data += fmt.Sprintf("  mode %s %o\n\n", wheel.Path, wheel.Mode)
 	}
 
 	return data
@@ -301,7 +301,7 @@ func genPythonWheelsCheck(info *data.Info) string {
 
 // genBasicEnvCheck generates env checks for very simple package
 func genBasicEnvCheck(info *data.Info) string {
-	if len(info.Apps) == 0 && len(info.Services) == 0 && len(info.Configs) == 0 {
+	if len(info.Apps)+len(info.Completions)+len(info.Services)+len(info.Configs) == 0 {
 		return ""
 	}
 
@@ -327,6 +327,15 @@ func genBasicEnvCheck(info *data.Info) string {
 		for _, config := range info.Configs {
 			data += genConfigCheck(config)
 			data += "\n"
+		}
+
+		data += "\n"
+	}
+
+	if len(info.Completions) > 0 {
+		for _, compl := range info.Completions {
+			data += fmt.Sprintf("  exist %s\n", compl)
+			data += fmt.Sprintf("  mode %s 644\n", compl)
 		}
 
 		data += "\n"

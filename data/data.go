@@ -15,17 +15,18 @@ import (
 
 // Info contains info about all packages
 type Info struct {
-	Dist       string
-	Pkgs       []string
-	Apps       []string
-	Configs    []*rpm.Object
-	SharedLibs []string
-	StaticLibs []*rpm.Object
-	Headers    []string
-	PkgConfigs []string
-	Users      UserMap
-	Groups     GroupMap
-	Services   []string
+	Dist        string
+	Pkgs        []string
+	Apps        []string
+	Configs     []*rpm.Object
+	SharedLibs  []string
+	StaticLibs  []*rpm.Object
+	Headers     []string
+	PkgConfigs  []string
+	Completions []string
+	Users       UserMap
+	Groups      GroupMap
+	Services    []string
 
 	Python2Dirs    []*rpm.Object
 	Python2Files   []*rpm.Object
