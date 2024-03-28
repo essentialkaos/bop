@@ -9,7 +9,6 @@ package cli
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -19,6 +18,8 @@ import (
 	"github.com/essentialkaos/ek/v12/fsutil"
 	"github.com/essentialkaos/ek/v12/options"
 	"github.com/essentialkaos/ek/v12/pluralize"
+	"github.com/essentialkaos/ek/v12/support"
+	"github.com/essentialkaos/ek/v12/support/deps"
 	"github.com/essentialkaos/ek/v12/terminal/tty"
 	"github.com/essentialkaos/ek/v12/timeutil"
 	"github.com/essentialkaos/ek/v12/usage"
@@ -28,7 +29,6 @@ import (
 	"github.com/essentialkaos/ek/v12/usage/man"
 	"github.com/essentialkaos/ek/v12/usage/update"
 
-	"github.com/essentialkaos/bop/cli/support"
 	"github.com/essentialkaos/bop/extractor"
 	"github.com/essentialkaos/bop/generator"
 	"github.com/essentialkaos/bop/rpm"
@@ -39,7 +39,7 @@ import (
 // App info
 const (
 	APP  = "bop"
-	VER  = "1.3.0"
+	VER  = "1.3.1"
 	DESC = "Utility for generating formal bibop tests for RPM packages"
 )
 
@@ -99,7 +99,10 @@ func Run(gitRev string, gomod []byte) {
 		genAbout(gitRev).Print()
 		os.Exit(0)
 	case options.GetB(OPT_VERB_VER):
-		support.Print(APP, VER, gitRev, gomod)
+		support.Collect(APP, VER).
+			WithRevision(gitRev).
+			WithDeps(deps.Extract(gomod)).
+			Print()
 		os.Exit(0)
 	case options.GetB(OPT_HELP) || len(args) < 2:
 		genUsage().Print()
@@ -166,7 +169,7 @@ func processFiles(name string, files []string) {
 		output = options.GetS(OPT_OUTPUT)
 	}
 
-	err = ioutil.WriteFile(output, []byte(data), 0644)
+	err = os.WriteFile(output, []byte(data), 0644)
 
 	if err != nil {
 		printErrorAndExit(err.Error())
@@ -219,11 +222,6 @@ func printError(f string, a ...interface{}) {
 	fmtc.Fprintf(os.Stderr, "{r}"+f+"{!}\n", a...)
 }
 
-// printError prints warning message to console
-func printWarn(f string, a ...interface{}) {
-	fmtc.Fprintf(os.Stderr, "{y}"+f+"{!}\n", a...)
-}
-
 // printErrorAndExit print error message and exit with exit code 1
 func printErrorAndExit(f string, a ...interface{}) {
 	printError(f, a...)
@@ -238,11 +236,11 @@ func printCompletion() int {
 
 	switch options.GetS(OPT_COMPLETION) {
 	case "bash":
-		fmt.Printf(bash.Generate(info, "bop"))
+		fmt.Print(bash.Generate(info, "bop"))
 	case "fish":
-		fmt.Printf(fish.Generate(info, "bop"))
+		fmt.Print(fish.Generate(info, "bop"))
 	case "zsh":
-		fmt.Printf(zsh.Generate(info, optMap, "bop"))
+		fmt.Print(zsh.Generate(info, optMap, "bop"))
 	default:
 		return 1
 	}
@@ -292,12 +290,12 @@ func genAbout(gitRev string) *usage.About {
 		VersionColorTag: colorTagVer,
 		DescSeparator:   "{s}—{!}",
 
-		License:       "Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>",
-		UpdateChecker: usage.UpdateChecker{"essentialkaos/bop", update.GitHubChecker},
+		License: "Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>",
 	}
 
 	if gitRev != "" {
 		about.Build = "git:" + gitRev
+		about.UpdateChecker = usage.UpdateChecker{"essentialkaos/bop", update.GitHubChecker}
 	}
 
 	return about
