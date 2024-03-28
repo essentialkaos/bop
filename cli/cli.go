@@ -10,7 +10,6 @@ package cli
 import (
 	"fmt"
 	"os"
-	"strings"
 	"time"
 
 	"github.com/essentialkaos/ek/v12/env"
