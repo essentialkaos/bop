@@ -18,6 +18,7 @@ import (
 	"github.com/essentialkaos/ek/v12/fsutil"
 	"github.com/essentialkaos/ek/v12/options"
 	"github.com/essentialkaos/ek/v12/pluralize"
+	"github.com/essentialkaos/ek/v12/strutil"
 	"github.com/essentialkaos/ek/v12/support"
 	"github.com/essentialkaos/ek/v12/support/deps"
 	"github.com/essentialkaos/ek/v12/terminal/tty"
@@ -162,7 +163,7 @@ func processFiles(name string, files []string) {
 		printErrorAndExit(err.Error())
 	}
 
-	services := parseServiceList(options.GetS(OPT_SERVICE))
+	services := strutil.Fields(options.GetS(OPT_SERVICE))
 	output, data := generator.Generate(name, services, info)
 
 	if options.Has(OPT_OUTPUT) {
@@ -202,19 +203,6 @@ func checkFiles(files []string) {
 	if hasErrors {
 		os.Exit(1)
 	}
-}
-
-// parseServiceList parses service list option data
-func parseServiceList(data string) []string {
-	if data == "" {
-		return nil
-	}
-
-	if strings.Contains(data, ",") {
-		data = strings.Replace(data, ",", " ", -1)
-	}
-
-	return strings.Fields(data)
 }
 
 // printError prints error message to console
