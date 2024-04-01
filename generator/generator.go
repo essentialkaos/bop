@@ -477,10 +477,8 @@ func genConfigCheck(config *rpm.Object) string {
 		if config.Mode != 0755 {
 			data += fmt.Sprintf("  mode %s %o\n", config.Path, config.Mode)
 		}
-	} else {
-		if config.Mode != 0644 {
-			data += fmt.Sprintf("  mode %s %o\n", config.Path, config.Mode)
-		}
+	} else if config.Mode != 0644 {
+		data += fmt.Sprintf("  mode %s %o\n", config.Path, config.Mode)
 	}
 
 	if config.User != "" && config.User != "root" {
@@ -551,21 +549,21 @@ func getPythonModuleFilePath(path string) string {
 
 	switch {
 	case strings.HasPrefix(pathDir, "/usr/lib/python2"):
-		path = strings.Replace(path, pathDir, "{PYTHON2_SITELIB}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON2_SITELIB}")
 	case strings.HasPrefix(pathDir, "/usr/lib64/python2"):
-		path = strings.Replace(path, pathDir, "{PYTHON2_SITEARCH}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON2_SITEARCH}")
 	case strings.HasPrefix(pathDir, "/usr/local/lib/python2"):
-		path = strings.Replace(path, pathDir, "{PYTHON2_SITELIB_LOCAL}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON2_SITELIB_LOCAL}")
 	case strings.HasPrefix(pathDir, "/usr/local/lib64/python2"):
-		path = strings.Replace(path, pathDir, "{PYTHON2_SITEARCH_LOCAL}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON2_SITEARCH_LOCAL}")
 	case strings.HasPrefix(pathDir, "/usr/lib/python3"):
-		path = strings.Replace(path, pathDir, "{PYTHON3_SITELIB}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON3_SITELIB}")
 	case strings.HasPrefix(pathDir, "/usr/lib64/python3"):
-		path = strings.Replace(path, pathDir, "{PYTHON3_SITEARCH}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON3_SITEARCH}")
 	case strings.HasPrefix(pathDir, "/usr/local/lib/python3"):
-		path = strings.Replace(path, pathDir, "{PYTHON3_SITELIB_LOCAL}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON3_SITELIB_LOCAL}")
 	case strings.HasPrefix(pathDir, "/usr/local/lib64/python3"):
-		path = strings.Replace(path, pathDir, "{PYTHON3_SITEARCH_LOCAL}", -1)
+		path = strings.ReplaceAll(path, pathDir, "{PYTHON3_SITEARCH_LOCAL}")
 	}
 
 	return path
