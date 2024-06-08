@@ -74,28 +74,7 @@ bop --generate-man | sudo gzip > /usr/share/man/man1/bop.1.gz
 
 ### Usage
 
-```
-Usage: bop {options} name package…
-
-Options
-
-  --output, -o file        Output file
-  --service, -s service    List of services for checking (mergeable)
-  --no-color, -nc          Disable colors in output
-  --help, -h               Show this help message
-  --version, -v            Show version
-
-Examples
-
-  bop htop htop*.rpm
-  Generate simple tests for package
-
-  bop redis redis*.rpm -s redis
-  Generate tests with service check
-
-  bop -o zl.recipe zlib zlib*.rpm minizip*.rpm
-  Generate tests with custom name
-```
+<img src=".github/images/usage.svg" />
 
 ### Build Status
 
