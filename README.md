@@ -1,11 +1,11 @@
-<p align="center"><a href="#readme"><img src="https://gh.kaos.st/bop.svg"/></a></p>
+<p align="center"><a href="#readme"><img src=".github/images/card.svg"/></a></p>
 
 <p align="center">
   <a href="https://kaos.sh/w/bop/ci"><img src="https://kaos.sh/w/bop/ci.svg" alt="GitHub Actions CI Status" /></a>
   <a href="https://kaos.sh/r/bop"><img src="https://kaos.sh/r/bop.svg" alt="GoReportCard" /></a>
   <a href="https://kaos.sh/b/bop"><img src="https://kaos.sh/b/e0f30749-1508-45dd-8d1c-c074b200f101.svg" alt="Codebeat badge" /></a>
   <a href="https://kaos.sh/w/bop/codeql"><img src="https://kaos.sh/w/bop/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
-  <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
+  <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>
 
 <p align="center"><a href="#installation">Installation</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#man-documentation">Man documentation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
