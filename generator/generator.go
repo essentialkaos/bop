@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"strings"
 
-	PATH "github.com/essentialkaos/ek/v12/path"
-	"github.com/essentialkaos/ek/v12/sliceutil"
+	PATH "github.com/essentialkaos/ek/v13/path"
+	"github.com/essentialkaos/ek/v13/sliceutil"
 
 	"github.com/essentialkaos/bop/data"
 	"github.com/essentialkaos/bop/rpm"
