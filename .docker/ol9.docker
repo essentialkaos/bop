@@ -4,7 +4,7 @@ ARG REGISTRY="docker.io"
 
 ## BUILDER #####################################################################
 
-FROM ${REGISTRY}/essentialkaos/oraclelinux:9 as builder
+FROM ${REGISTRY}/essentialkaos/oraclelinux:9 AS builder
 
 RUN mkdir -p "/go/src" && chmod -R 777 "/go"
 
