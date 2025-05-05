@@ -9,10 +9,10 @@ package generator
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	PATH "github.com/essentialkaos/ek/v13/path"
-	"github.com/essentialkaos/ek/v13/sliceutil"
 
 	"github.com/essentialkaos/bop/data"
 	"github.com/essentialkaos/bop/rpm"
@@ -104,7 +104,7 @@ func genVariables(info *data.Info, services []string) string {
 	}
 
 	for _, service := range info.Services {
-		if sliceutil.Contains(services, service) {
+		if slices.Contains(services, service) {
 			return "var delay 3\n\n"
 		}
 	}
@@ -138,7 +138,7 @@ func genServicesCheck(info *data.Info, services []string) string {
 
 	for i := 0; i < 3; i++ {
 		for _, service := range info.Services {
-			if len(services) > 0 && !sliceutil.Contains(services, service) {
+			if len(services) > 0 && !slices.Contains(services, service) {
 				continue
 			}
 

@@ -12,11 +12,11 @@ import (
 	"fmt"
 	"path"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 
 	PATH "github.com/essentialkaos/ek/v13/path"
-	"github.com/essentialkaos/ek/v13/sliceutil"
 	"github.com/essentialkaos/ek/v13/strutil"
 
 	"github.com/essentialkaos/bop/data"
@@ -130,7 +130,7 @@ func addPackageInfo(info *data.Info, pkg *rpm.Package) {
 	sort.Strings(info.Python2Modules)
 	sort.Strings(info.Python3Modules)
 
-	info.Services = sliceutil.Deduplicate(info.Services)
+	info.Services = slices.Compact(info.Services)
 
 	if pkg.Scriptlets != "" {
 		extractUsersData(pkg.Scriptlets, info.Users)
