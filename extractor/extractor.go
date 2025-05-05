@@ -2,7 +2,7 @@ package extractor
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                         Copyright (c) 2024 ESSENTIAL KAOS                          //
+//                         Copyright (c) 2025 ESSENTIAL KAOS                          //
 //      Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>     //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -12,12 +12,12 @@ import (
 	"fmt"
 	"path"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 
-	PATH "github.com/essentialkaos/ek/v12/path"
-	"github.com/essentialkaos/ek/v12/sliceutil"
-	"github.com/essentialkaos/ek/v12/strutil"
+	PATH "github.com/essentialkaos/ek/v13/path"
+	"github.com/essentialkaos/ek/v13/strutil"
 
 	"github.com/essentialkaos/bop/data"
 	"github.com/essentialkaos/bop/rpm"
@@ -130,7 +130,7 @@ func addPackageInfo(info *data.Info, pkg *rpm.Package) {
 	sort.Strings(info.Python2Modules)
 	sort.Strings(info.Python3Modules)
 
-	info.Services = sliceutil.Deduplicate(info.Services)
+	info.Services = slices.Compact(info.Services)
 
 	if pkg.Scriptlets != "" {
 		extractUsersData(pkg.Scriptlets, info.Users)
